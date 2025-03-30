@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    {% extends "base.html" %}
+
+    {% block content %}
+    <h1>My ToDo List</h1>
+    <form method="POST" action="/add">
+        <input type="text" name="task" placeholder="Enter a new task" required>
+        <button type="submit">Add Task</button>
+    </form>
+    <ul class="todo-list">
+        {% for task in tasks %}
+        <li>
+            <!-- Ensure proper text-decoration for completed tasks -->
+            <span style="text-decoration: {{ 'line-through' if task.done else 'none' }}">
+                {{ task.name }}
+            </span>
+            <!-- Form for marking a task as done -->
+            <form method="POST" action="/done/{{ task.id }}" style="display:inline;">
+                <button type="submit">Mark as Done</button>
+            </form>
+            <!-- Form for updating a task -->
+            <form method="POST" action="/update/{{ task.id }}" style="display:inline;">
+                <input type="text" name="updated_task" placeholder="Update task" required>
+                <button type="submit">Update</button>
+            </form>
+            <!-- Form for deleting a task -->
+            <form method="POST" action="/delete/{{ task.id }}" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endblock %}
+</body>
+</html>

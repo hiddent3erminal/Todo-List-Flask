@@ -1,0 +1,3 @@
+[console_scripts]
+less2scss = scss.less2scss:main
+pyscss = scss.tool:main

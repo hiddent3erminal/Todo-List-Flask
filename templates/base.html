@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <header class="header">
+        <h1>ToDo List Application</h1>
+    </header>
+    <div class="container">
+        {% block content %}
+        {% block body %}{% endblock %}
+        {% endblock %}
+    </div>
+    <footer class="footer">
+        <p>&copy; 2023 ToDo List App. All rights reserved.</p>
+    </footer>
+</body>
+</html>
